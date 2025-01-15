@@ -103,19 +103,19 @@ def get_cfgs():
             "right_elbow_joint",
         ],
         # PD
-        "kp": 200.0,#20.0
-        "kd": 0.5,
+        "kp": 250.0,#20.0
+        "kd": 15.0,#0.5
         # termination
-        "termination_if_roll_greater_than": 80,  # degree 10 10
-        "termination_if_pitch_greater_than": 80,
+        "termination_if_roll_greater_than": 30,  # degree 10 10
+        "termination_if_pitch_greater_than": 30,
         # base pose
-        "base_init_pos": [0.0, 0.0, 0.8],#0.42
+        "base_init_pos": [0.0, 0.0, 0.9],#0.42
         "base_init_quat": [1.0, 0.0, 0.0, 0.0],
         "episode_length_s": 20.0,
         "resampling_time_s": 4.0,
-        "action_scale": 0.15,#0.25
+        "action_scale": 0.25,
         "simulate_action_latency": True,
-        "clip_actions": 100.0,
+        "clip_actions": 1.0,#100.0
     }
     obs_cfg = {
         "num_obs": 66,#45
@@ -128,22 +128,22 @@ def get_cfgs():
     }
     reward_cfg = {
         "tracking_sigma": 0.25,
-        "base_height_target": 0.5,#0.3
-        "feet_height_target": 0.1,#0.075
+        "base_height_target": 0.4, 
+        "feet_height_target": 0.1,
         "reward_scales": {
-            "tracking_lin_vel": 1.0,
-            "tracking_ang_vel": 0.2,
+            "tracking_lin_vel": 2.0,
+            "tracking_ang_vel": 0.5,
             "lin_vel_z": -1.0,
-            "base_height": -10.0,#-50.0
-            "action_rate": -0.005,
-            "similar_to_default": -0.1,
+            "base_height": -3.0,
+            "action_rate": -0.03,
+            "similar_to_default": -0.03,
         },
     }
     command_cfg = {
         "num_commands": 3,
         "lin_vel_x_range": [0.5, 0.5], #0.5 0.5
         "lin_vel_y_range": [0, 0],
-        "ang_vel_range": [0, 0],
+        "ang_vel_range": [0, 0],#0 0
     }
 
     return env_cfg, obs_cfg, reward_cfg, command_cfg
